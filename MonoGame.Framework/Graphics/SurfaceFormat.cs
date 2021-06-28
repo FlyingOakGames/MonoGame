@@ -184,6 +184,15 @@ namespace Microsoft.Xna.Framework.Graphics
 		/// </summary>
         SRgb8A8Etc2 = 95,
 
+        /// <summary>
+        /// 4bit indexed palettised (legacy platform)
+        /// </summary>
+        P4Argb = 110,
+        /// <summary>
+        /// 8bit indexed palettised (legacy platform)
+        /// </summary>
+        P8Argb = 111,
+
         #endregion
     }
 }

@@ -442,6 +442,17 @@ namespace Microsoft.Xna.Framework.Graphics
                 {
                     dataByteSize = (Math.Max(checkedRect.Width, 8) * Math.Max(checkedRect.Height, 8) * 4 + 7) / 8;
                 }
+                else if (Format == SurfaceFormat.P4Argb)
+                {
+                    dataByteSize = checkedRect.Width * checkedRect.Height;
+                    int rem = dataByteSize % 2;
+                    dataByteSize /= 2;
+                    dataByteSize += 16 * 4 + rem;
+                }
+                else if (Format == SurfaceFormat.P8Argb)
+                {
+                    dataByteSize = checkedRect.Width * checkedRect.Height + 256 * 4;
+                }
                 else
                 {
                     dataByteSize = roundedWidth * roundedHeight * fSize / (blockWidth * blockHeight);

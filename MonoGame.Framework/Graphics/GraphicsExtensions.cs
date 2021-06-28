@@ -806,6 +806,8 @@ namespace Microsoft.Xna.Framework.Graphics
                 case SurfaceFormat.SRgb8A8Etc2:
                 case SurfaceFormat.RgbPvrtc2Bpp:
                 case SurfaceFormat.RgbPvrtc4Bpp:
+                case SurfaceFormat.P8Argb:
+                case SurfaceFormat.P4Argb:
                     return true;
             }
             return false;
@@ -815,6 +817,7 @@ namespace Microsoft.Xna.Framework.Graphics
         {
             switch (surfaceFormat)
             {
+                // One texel in DXT1, PVRTC (2bpp and 4bpp) and ETC1 is a minimum 4x4 block (8x4 for PVRTC 2bpp), which is 8 bytes
                 case SurfaceFormat.Dxt1:
                 case SurfaceFormat.Dxt1SRgb:
                 case SurfaceFormat.Dxt1a:
@@ -827,8 +830,11 @@ namespace Microsoft.Xna.Framework.Graphics
                 case SurfaceFormat.Srgb8Etc2:
                 case SurfaceFormat.Rgb8A1Etc2:
                 case SurfaceFormat.Srgb8A1Etc2:
-                    // One texel in DXT1, PVRTC (2bpp and 4bpp) and ETC1 is a minimum 4x4 block (8x4 for PVRTC 2bpp), which is 8 bytes
+                case SurfaceFormat.HalfVector4:
+                case SurfaceFormat.Rgba64:
+                case SurfaceFormat.Vector2:
                     return 8;
+                // One texel in DXT3 and DXT5 is a minimum 4x4 block, which is 16 bytes
                 case SurfaceFormat.Dxt3:
                 case SurfaceFormat.Dxt3SRgb:
                 case SurfaceFormat.Dxt5:
@@ -837,15 +843,17 @@ namespace Microsoft.Xna.Framework.Graphics
                 case SurfaceFormat.RgbaAtcInterpolatedAlpha:
                 case SurfaceFormat.Rgba8Etc2:
                 case SurfaceFormat.SRgb8A8Etc2:
-                    // One texel in DXT3 and DXT5 is a minimum 4x4 block, which is 16 bytes
+                case SurfaceFormat.Vector4:
                     return 16;
                 case SurfaceFormat.Alpha8:
+                case SurfaceFormat.P4Argb:
                     return 1;
                 case SurfaceFormat.Bgr565:
                 case SurfaceFormat.Bgra4444:
                 case SurfaceFormat.Bgra5551:
                 case SurfaceFormat.HalfSingle:
                 case SurfaceFormat.NormalizedByte2:
+                case SurfaceFormat.P8Argb:
                     return 2;
                 case SurfaceFormat.Color:
                 case SurfaceFormat.ColorSRgb:
@@ -859,12 +867,6 @@ namespace Microsoft.Xna.Framework.Graphics
                 case SurfaceFormat.Bgr32:
                 case SurfaceFormat.Bgr32SRgb:
                     return 4;
-                case SurfaceFormat.HalfVector4:
-                case SurfaceFormat.Rgba64:
-                case SurfaceFormat.Vector2:
-                    return 8;
-                case SurfaceFormat.Vector4:
-                    return 16;
                 default:
                     throw new ArgumentException();
             }
