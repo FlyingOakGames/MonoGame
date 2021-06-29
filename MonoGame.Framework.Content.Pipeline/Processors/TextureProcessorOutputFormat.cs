@@ -51,5 +51,10 @@ namespace Microsoft.Xna.Framework.Content.Pipeline.Processors
         /// The input texture is compressed using ATI texture compression.  Used on some Android platforms.
         /// </summary>
         AtcCompressed,
+
+        /// <summary>
+        /// The input texture is compressed palettization (or fallback to Color automatically if there are more than 256 colors). Used on PS Vita.
+        /// </summary>
+        Palettized,
     }
 }
